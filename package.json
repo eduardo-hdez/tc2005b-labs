@@ -19,6 +19,7 @@
   "homepage": "https://github.com/eduardo-hdez/Software-Construction-and-Decision-Making#readme",
   "dependencies": {
     "body-parser": "^2.2.2",
+    "ejs": "^4.0.1",
     "express": "^5.2.1"
   }
 }

@@ -1,0 +1,13 @@
+<%- include('../includes/header') %>
+
+<a href="/users/new"><button>New user</button></a>
+<div>
+  <% for (let user of users) { %>
+    <div>
+      <h2><%= user.name %></h2>
+      <p><%= user.description %></p>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../includes/footer') %>

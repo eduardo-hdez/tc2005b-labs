@@ -1,0 +1,13 @@
+<%- include('../includes/header') %>
+
+<a href="/tasks/new"><button>New task</button></a>
+<div>
+  <% for (let task of tasks) { %>
+    <div>
+      <h2><%= task.title %></h2>
+      <p><%= task.description %></p>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../includes/footer') %>
