@@ -7,6 +7,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+const session = require("express-session");
+app.use(session({
+  secret: "secret (change this to a more secure secret in production scenarios)",
+  resave: false,
+  saveUninitialized: false,
+}));
+
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
