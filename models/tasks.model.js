@@ -23,4 +23,8 @@ module.exports = class Tasks {
       return this.fetchAll();
     }
   }
+
+  static update(id, name, description) {
+    return db.execute('UPDATE tasks SET name = ?, description = ? WHERE id = ?', [name, description, id]);
+  }
 };

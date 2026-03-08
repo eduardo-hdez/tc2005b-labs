@@ -33,3 +33,28 @@ exports.postNewTask = (request, response, next) => {
     throw error;
   });
 };
+
+exports.getEditTask = (request, response, next) => {
+  Tasks.fetchOne(request.params.id).then(([rows, fieldData]) => {
+    if (rows.length === 0) {
+      return response.redirect("/tasks");
+    }
+    response.render("tasks/edit", {
+      title: "Edit Task",
+      username: request.session.username || "",
+      task: rows[0],
+    });
+  }).catch(error => {
+    console.log(error);
+    throw error;
+  });
+};
+
+exports.postEditTask = (request, response, next) => {
+  Tasks.update(request.params.id, request.body.title, request.body.description).then(() => {
+    return response.redirect("/tasks");
+  }).catch(error => {
+    console.log(error);
+    throw error;
+  });
+};
