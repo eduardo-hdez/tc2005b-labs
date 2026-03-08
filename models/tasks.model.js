@@ -6,7 +6,7 @@ module.exports = class Tasks {
     this.description = description;
   }
   save() {
-    tasks.push(this);
+    return db.execute('INSERT INTO tasks (title, description) VALUES (?, ?)', [this.title, this.description]);
   }
   static fetchAll() {
     return db.execute('SELECT * FROM tasks');
