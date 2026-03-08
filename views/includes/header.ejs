@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lab 11 - Express</title>
     <link rel="icon" href="../../public/favicon.ico" />
   </head>
@@ -9,8 +10,12 @@
     <header>
       <h1><%= title %></h1>
       <% if (typeof username !== 'undefined' && username) { %>
-        <p>Welcome, <%= username %></p>
+        <p><em>Welcome, <%= username %></em></p>
       <% } %>
+      <nav>
+        <a href="/tasks">All Tasks</a> |
+        <a href="/tasks/new">New Task</a>
+      </nav>
+      <hr />
     </header>
-  </body>
-</html>
+    <main>

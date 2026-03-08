@@ -1,14 +1,30 @@
 <%- include('../includes/header') %>
 
-<a href="/tasks/new"><button>New task</button></a>
-<div>
-  <% for (let task of tasks) { %>
-    <div>
-      <h2><%= task.name %></h2>
-      <p><%= task.description %></p>
-      <a href="/tasks/<%= task.id %>/edit"><button>Edit</button></a>
-    </div>
-  <% } %>
-</div>
+<h2>Tasks (<%= tasks.length %>)</h2>
+
+<% if (tasks.length === 0) { %>
+  <p><em>No tasks yet.</em> <a href="/tasks/new">Create one!</a></p>
+<% } else { %>
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tasks.forEach((task, i) => { %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><strong><%= task.name %></strong></td>
+          <td><%= task.description %></td>
+          <td><a href="/tasks/<%= task.id %>/edit">Edit</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>
 
 <%- include('../includes/footer') %>

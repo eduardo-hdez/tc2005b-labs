@@ -1,14 +1,26 @@
 <%- include('../includes/header') %>
 
+<h2>Edit Task</h2>
+
 <form action="/tasks/<%= task.id %>/edit" method="POST">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" value="<%= task.name %>" required>
-    <br><br>
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description" value="<%= task.description %>" required>
-    <br><br>
-    <button type="submit">Update Task</button>
-    <a href="/tasks"><button type="button">Cancel</button></a>
+  <fieldset>
+    <legend>Task Details</legend>
+
+    <p>
+      <label for="title"><strong>Name:</strong></label><br />
+      <input type="text" id="title" name="title" size="40" value="<%= task.name %>" required />
+    </p>
+
+    <p>
+      <label for="description"><strong>Description:</strong></label><br />
+      <textarea id="description" name="description" rows="4" cols="40" required><%= task.description %></textarea>
+    </p>
+
+    <p>
+      <button type="submit">Update Task</button>
+      <a href="/tasks">Cancel</a>
+    </p>
+  </fieldset>
 </form>
 
 <%- include('../includes/footer') %>
