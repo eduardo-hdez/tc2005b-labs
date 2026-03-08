@@ -3,11 +3,15 @@ const Tasks = require("../models/tasks.model");
 const path = require("path");
 
 exports.getTasks = (request, response, next) => {
-  const tasks = Tasks.fetchAll();
-  response.render("tasks/index", {
-    tasks: tasks,
-    title: "Tasks",
-    username: request.session.username || "",
+  Tasks.fetchAll().then(([rows, fieldData]) => {
+    response.render("tasks/index", {
+      title: "Tasks",
+      username: request.session.username || "",
+      tasks: rows,
+    });
+  }).catch(error => {
+    console.log(error);
+    throw error;
   });
 };
 
