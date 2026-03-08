@@ -1,12 +1,12 @@
 const db = require('../util/database');
 
 module.exports = class Tasks {
-  constructor(title, description) {
-    this.title = title;
+  constructor(name, description) {
+    this.name = name;
     this.description = description;
   }
   save() {
-    return db.execute('INSERT INTO tasks (title, description) VALUES (?, ?)', [this.title, this.description]);
+    return db.execute('INSERT INTO tasks (name, description) VALUES (?, ?)', [this.name, this.description]);
   }
   static fetchAll() {
     return db.execute('SELECT * FROM tasks');
