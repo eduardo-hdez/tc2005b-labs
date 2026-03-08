@@ -1,7 +1,4 @@
-const tasks = [
-    {title: "Task 1", description: "Description 1"},
-    {title: "Task 2", description: "Description 2"},
-];
+const db = require('../util/database');
 
 module.exports = class Tasks {
   constructor(title, description) {
@@ -12,6 +9,6 @@ module.exports = class Tasks {
     tasks.push(this);
   }
   static fetchAll() {
-    return tasks;
+    return db.execute('SELECT * FROM tasks');
   }
 };
