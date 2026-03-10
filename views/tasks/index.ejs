@@ -4,7 +4,7 @@
 
 <% if (tasks.length === 0) { %>
   <div class="notification is-warning is-light">
-    <p><em>No tasks yet.</em> <a href="/tasks/new">Create one!</a></p>
+    <p><em>No tasks yet.</em> <a href="/tasks/new-task">Create one!</a></p>
   </div>
 <% } else { %>
   <div class="table-container">
@@ -23,7 +23,7 @@
             <td><%= i + 1 %></td>
             <td><strong><%= task.name %></strong></td>
             <td><%= task.description %></td>
-            <td><a class="button is-small is-info is-outlined" href="/tasks/<%= task.id %>/edit">Edit</a></td>
+            <td><a class="button is-small is-info is-outlined" href="/tasks/<%= task.id %>/edit-task">Edit</a></td>
           </tr>
         <% }) %>
       </tbody>

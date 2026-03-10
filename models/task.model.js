@@ -1,13 +1,13 @@
 const db = require('../util/supabase');
 
 module.exports = class Task {
-  constructor(name, description) {
-    this.name = name;
+  constructor(title, description) {
+    this.title = title;
     this.description = description;
   }
   
   save() {
-    return db.from('Tasks').insert({ name: this.name, description: this.description });
+    return db.from('Tasks').insert({ title: this.title, description: this.description });
   }
 
   static fetchAll() {
@@ -15,7 +15,7 @@ module.exports = class Task {
   }
 
   static fetchOne(id) {
-    return db.from('Tasks').select('*').eq('id', id);
+    return db.from('Tasks').select('*').eq('id', id_task);
   }
 
   static fetch(id) {
@@ -26,7 +26,7 @@ module.exports = class Task {
     }
   }
 
-  static update(id, name, description) {
-    return db.from('Tasks').update({ name: name, description: description }).eq('id', id);
+  static update(id_task, title, description) {
+    return db.from('Tasks').update({ title: title, description: description }).eq('id', id_task);
   }
 };

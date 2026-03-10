@@ -3,7 +3,8 @@
 <h2 class="title is-4">Edit Task</h2>
 
 <div class="box">
-  <form action="/tasks/<%= task.id %>/edit" method="POST">
+  <form action="/tasks/<%= task.id %>/edit-task" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
     <div class="field">
       <label class="label" for="title">Name</label>
       <div class="control">

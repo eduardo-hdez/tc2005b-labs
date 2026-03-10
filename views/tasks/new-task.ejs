@@ -3,7 +3,8 @@
 <h2 class="title is-4">Create New Task</h2>
 
 <div class="box">
-  <form action="/tasks/new" method="POST">
+  <form action="/tasks/new-task" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
     <div class="field">
       <label class="label" for="title">Title</label>
       <div class="control">
