@@ -1,6 +1,6 @@
 const db = require('../util/database');
 
-module.exports = class Tasks {
+module.exports = class Task {
   constructor(name, description) {
     this.name = name;
     this.description = description;
