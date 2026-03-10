@@ -2,7 +2,7 @@ const Task = require("../models/task.model");
 
 const path = require("path");
 
-exports.getTasks = (request, response, next) => {
+exports.getAllTasks = (request, response, next) => {
   console.log(request.params.id);
   Task.fetch(request.params.id).then(({ data, error }) => {
     if (error) throw error;

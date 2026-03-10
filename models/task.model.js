@@ -5,9 +5,11 @@ module.exports = class Task {
     this.name = name;
     this.description = description;
   }
+  
   save() {
     return db.from('Tasks').insert({ name: this.name, description: this.description });
   }
+
   static fetchAll() {
     return db.from('Tasks').select('*');
   }
