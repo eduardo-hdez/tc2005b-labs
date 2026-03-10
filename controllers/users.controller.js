@@ -2,7 +2,11 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user.model');
 
 exports.getSignup = (request, response, next) => {
-  response.render('signup', {title: 'Signup'});
+  response.render('signup', {
+    title: 'Signup',
+    csrfToken: request.csrfToken(),
+    username: request.session.username || '',
+  });
 }
 
 exports.postSignup = (request, response, next) => {
@@ -18,6 +22,7 @@ exports.postSignup = (request, response, next) => {
 exports.getLogin = (request, response, next) => {
   const error = request.session.error || '';
   response.render('login', {
+    title: 'Login',
     csrfToken: request.csrfToken(),
     isLoggedIn: request.session.isLoggedIn || '',
     error: error,
