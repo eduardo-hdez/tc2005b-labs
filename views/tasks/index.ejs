@@ -1,6 +1,13 @@
 <%- include('../includes/header') %>
 
-<h2 class="title is-4">Tasks (<%= tasks.length %>)</h2>
+<div class="level">
+  <div class="level-left">
+    <h2 class="title is-4">Tasks (<%= tasks.length %>)</h2>
+  </div>
+  <div class="level-right">
+    <a class="button is-success" href="/tasks/new-task">+ New Task</a>
+  </div>
+</div>
 
 <% if (tasks.length === 0) { %>
   <div class="notification is-warning is-light">
