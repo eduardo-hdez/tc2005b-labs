@@ -25,8 +25,13 @@
       <div id="mainNav" class="navbar-menu">
         <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
           <div class="navbar-start">
-            <a class="navbar-item" href="/tasks">All Tasks</a>
-            <a class="navbar-item" href="/tasks/new">New Task</a>
+            <a class="navbar-item" href="/tasks">My Tasks</a>
+            <% if (typeof privilegios !== 'undefined' && privilegios.some(p => p.name_privilege === 'create_task')) { %>
+              <a class="navbar-item" href="/tasks/new-task">New Task</a>
+            <% } %>
+            <% if (typeof privilegios !== 'undefined' && privilegios.some(p => p.name_privilege === 'view_users')) { %>
+              <a class="navbar-item" href="/users/list">Users</a>
+            <% } %>
           </div>
           <div class="navbar-end">
             <div class="navbar-item">
