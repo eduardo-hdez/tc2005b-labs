@@ -1,0 +1,33 @@
+<%- include('../includes/header') %>
+
+<h2 class="title is-4">Create New Task</h2>
+
+<div class="box">
+  <form action="/tasks/new-task" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <div class="field">
+      <label class="label" for="title">Title</label>
+      <div class="control">
+        <input class="input" type="text" id="title" name="title" placeholder="Enter task title" required />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="description">Description</label>
+      <div class="control">
+        <textarea class="textarea" id="description" name="description" rows="4" placeholder="Enter task description" required></textarea>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-success" type="submit">Save Task</button>
+      </div>
+      <div class="control">
+        <a class="button is-light" href="/tasks">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<%- include('../includes/footer') %>

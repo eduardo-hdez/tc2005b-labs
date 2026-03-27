@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TC2005B - Laboratorios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="icon" href="../../public/favicon.ico" />
+    <style>
+      body { display: flex; flex-direction: column; min-height: 100vh; }
+      .section { flex: 1; }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <span class="navbar-item has-text-weight-bold"><%= title %></span>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNav">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="mainNav" class="navbar-menu">
+        <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
+          <div class="navbar-start">
+            <a class="navbar-item" href="/tasks">My Tasks</a>
+            <% if (typeof privilegios !== 'undefined' && privilegios.some(p => p.name_privilege === 'Create task')) { %>
+              <a class="navbar-item" href="/tasks/new-task">New Task</a>
+            <% } %>
+            <% if (typeof privilegios !== 'undefined' && privilegios.some(p => p.name_privilege === 'View users')) { %>
+              <a class="navbar-item" href="/users/list">Users</a>
+            <% } %>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <span class="tag is-info is-light">Welcome, <%= username %></span>
+            </div>
+            <div class="navbar-item">
+              <a class="button is-light" href="/users/logout">Logout</a>
+            </div>
+          </div>
+        <% } else { %>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="button is-light" href="/users/login">Login</a>
+            </div>
+            <div class="navbar-item">
+              <a class="button is-primary" href="/users/signup">Signup</a>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </nav>
+    <section class="section">
+      <div class="container">

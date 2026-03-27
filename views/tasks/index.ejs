@@ -1,0 +1,66 @@
+<%- include('../includes/header') %>
+
+<div class="level">
+  <div class="level-left">
+    <h2 class="title is-4">Tasks (<%= tasks.length %>)</h2>
+  </div>
+  <div class="level-right">
+    <% if (privilegios.some(p => p.name_privilege === 'Create task')) { %>
+      <a class="button is-success" href="/tasks/new-task">+ New Task</a>
+    <% } %>
+  </div>
+</div>
+
+<% if (tasks.length === 0) { %>
+  <div class="notification is-warning is-light">
+    <p><em>No tasks yet.</em>
+      <% if (privilegios.some(p => p.name_privilege === 'Create task')) { %>
+        <a href="/tasks/new-task">Create one!</a>
+      <% } %>
+    </p>
+  </div>
+<% } else { %>
+  <div class="table-container">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Description</th>
+          <% if (privilegios.some(p => p.name_privilege === 'View all tasks')) { %>
+            <th>Owner</th>
+          <% } %>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tasks.forEach((task, i) => { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><strong><%= task.title %></strong></td>
+            <td><%= task.description %></td>
+            <% if (privilegios.some(p => p.name_privilege === 'View all tasks')) { %>
+              <td><span class="tag is-light"><%= task.username %></span></td>
+            <% } %>
+            <td>
+              <div class="buttons are-small">
+                <% const isOwner = task.username === username; %>
+                <% if (isOwner || privilegios.some(p => p.name_privilege === 'Update any task')) { %>
+                  <a class="button is-info is-outlined" href="/tasks/<%= task.id_task %>/edit-task">Edit</a>
+                <% } %>
+                <% if (isOwner || privilegios.some(p => p.name_privilege === 'Delete any task')) { %>
+                  <form action="/tasks/<%= task.id_task %>/delete" method="POST" style="display:inline;">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                    <button class="button is-danger is-outlined" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                  </form>
+                <% } %>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+
+<%- include('../includes/footer') %>
